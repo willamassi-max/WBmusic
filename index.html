@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WBmusic – Estudo de Teoria Musical</title>
+<style>
+:root{--bg:#0f131c;--fg:#fff;--mut:#a9afbd;--card:#171c27;--ac:#fe5534;--bd:#2a303d;--gr:#b9eb56;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+.hd{border-bottom:1px solid var(--bd);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.w{max-width:900px;margin:0 auto;padding:16px}
+h1{font:800 clamp(1.6rem,5vw,2.4rem)/1.15 Georgia,serif;margin:.3em 0}h2{margin:1.1em 0 .4em}h3{margin:.2em 0}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px;margin:12px 0}
+.pl{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.pl .card{margin:0}
+.pr{font:800 2rem system-ui;color:var(--ac)}
+ul{padding-left:20px;margin:6px 0}
+.b{background:var(--ac);color:#fff;border:0;border-radius:10px;padding:11px 16px;font:700 15px system-ui;cursor:pointer;text-decoration:none;display:inline-block;text-align:center}
+.b.s{background:transparent;color:var(--fg);border:1px solid var(--bd)}.b.f{width:100%}.b:disabled{opacity:.5;cursor:default}
+.sel{outline:3px solid var(--gr)}
+input,select,textarea{width:100%;padding:10px;border:1px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--fg);font:inherit;margin:4px 0 10px}
+.wk{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.bar{height:10px;background:var(--bd);border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:var(--ac)}
+.bd{font-size:12px;font-weight:700;padding:2px 9px;border-radius:99px;background:var(--bd)}.bd.ok{background:var(--gr);color:#0f131c}
+.q{margin:12px 0}.q label{display:block;padding:7px 9px;border:1px solid var(--bd);border-radius:8px;margin:4px 0;cursor:pointer}
+.q input{width:auto;margin:0 8px 0 0}.q .c{border-color:var(--gr);background:#b9eb5622}.q .e{border-color:#ff6b6b;background:#ff6b6b22}
+.ch{display:flex;flex-wrap:wrap;gap:4px}.ch span{font-size:12px;border:1px solid var(--bd);border-radius:6px;padding:2px 6px}
+.m{color:var(--mut);font-size:14px}.err{color:#ff8787;min-height:1.3em}.okm{color:var(--gr)}.tab{text-align:center;margin-top:10px}
+a{color:var(--gr)}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}.g .card{margin:0;text-align:center}.g b{font-size:1.6rem;color:var(--ac)}
+:root{--key:#ebe0ce;--blk:#12171b;--ac2:#6f8396}.mat svg .wk{display:inline;gap:0}.mat .wk{fill:var(--key);stroke:var(--mut)}.mat .bk{fill:var(--blk);stroke:var(--mut)}.mat .hl{fill:var(--ac)}.mat .hl2{fill:var(--ac2)}.mat .lb{font:700 8.5px system-ui;fill:#fff}.mat .gt{font:700 15px system-ui;fill:var(--fg)}.mat svg.d{width:100%;max-width:440px;display:block;margin:12px auto}.mat .gr{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}.mat svg.g{width:112px}.mat .cap{text-align:center;font:italic 14px system-ui;color:var(--mut)}.mat h3{margin:.4em 0}
+.mat h2{font-size:1.25rem;margin:1.2em 0 .4em;color:var(--ac)}.mat table{border-collapse:collapse;width:100%;font-size:14px}.mat th,.mat td{border:1px solid var(--bd);padding:7px 9px;text-align:left}.mat th{background:var(--card)}.mat .tb{overflow-x:auto}.mat .cap{color:var(--mut);font-size:13px}details{margin:8px 0}summary{cursor:pointer}
+.tag{font-size:12px;border:1px solid var(--bd);border-radius:99px;padding:3px 10px;background:none;color:var(--fg);cursor:pointer}
+
+.hero{position:relative;display:block;background:radial-gradient(ellipse at 85% 0%,#2a1c17 0,transparent 55%),#0b0e14;border:1px solid var(--bd);border-radius:18px;padding:22px;margin:4px 0 16px}
+.eyebrow{color:var(--ac);font:700 13px system-ui;letter-spacing:.06em;text-transform:uppercase}
+.hero h1{font:800 clamp(2rem,6vw,3.1rem)/1.08 system-ui,-apple-system,sans-serif;margin:.25em 0 .35em}.hero h1 em{color:var(--ac);font-style:normal}
+.hero .lead{font-size:1.1rem;color:#e6e8ee;margin:0 0 14px}
+.hero>div:first-child{padding-right:104px}.autor{position:absolute;top:12px;right:12px;width:84px;text-align:center}.autor img{width:84px;height:84px;aspect-ratio:1;object-fit:cover;border-radius:50%;border:2px solid var(--ac);display:block}
+.autor span{display:block;margin-top:5px;font-size:11px;line-height:1.2;color:var(--mut)}.autor span b{color:#fff}
+.bonus{border:2px solid var(--ac);border-radius:14px;padding:14px 16px;text-align:center;font-size:1.1rem;background:#12161e;margin:14px 0}.bonus b{color:var(--ac)}
+.acesso{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center}
+.qrbox{text-align:center}.qrbox canvas{background:#fff;border-radius:14px;display:block;width:150px;height:150px}
+.qrbox small{display:block;margin-top:6px;color:var(--mut)}
+.cta{display:flex;flex-direction:column;gap:10px}
+.b.wa{background:var(--ac);font-size:1.05rem;padding:14px 16px}.b.ol{background:var(--ac);border:0;color:#fff;font-size:1.05rem;padding:14px 16px}.b.ol b{color:#fff}.b.ol:hover,.b.wa:hover{filter:brightness(1.1)}
+@media(max-width:640px){.hero{padding:16px}.hero>div:first-child{padding-right:72px}.autor{width:60px;top:10px;right:10px}.autor img{width:60px;height:60px}.autor span{font-size:10px}.acesso{grid-template-columns:1fr;justify-items:center}.cta{width:100%}}
+</style>
+</head>
+<body>
+<div class="hd"><img src="/logo.png" height="44" alt="WB music"><span class="m" id="who"></span></div>
+<div class="w" id="app"><p class="m">Carregando…</p></div>
+<script>
+window.wbFx=(function(){
+const WH=[0,2,4,5,7,9,11,12],BL={1:30,3:60,6:120,8:150,10:180};
+function kb(h,l){h=h.split(',').map(Number);l=l?l.split(','):[];let s='<svg viewBox="0 0 241 100" class="d">';
+WH.forEach((n,i)=>{const k=h.indexOf(n);s+=`<rect x="${i*30}" y="1" width="30" height="96" class="wk${k>=0?' hl':''}"/>`;if(k>=0)s+=`<text x="${i*30+15}" y="88" class="lb" text-anchor="middle">${l[k]||''}</text>`});
+for(const n in BL){const k=h.indexOf(+n);s+=`<rect x="${BL[n]-9}" y="1" width="18" height="58" class="bk${k>=0?' hl2':''}"/>`;if(k>=0)s+=`<text x="${BL[n]}" y="50" class="lb" text-anchor="middle">${l[k]||''}</text>`}
+return s+'</svg>'}
+const G={C:[-1,3,2,0,1,0],G:[3,2,0,0,0,3],D:[-1,-1,0,2,3,2],A:[-1,0,2,2,2,0],E:[0,2,2,1,0,0],Am:[-1,0,2,2,1,0],Dm:[-1,-1,0,2,3,1],Em:[0,2,2,0,0,0],F:[1,3,3,2,1,1]};
+function gt(n){const f=G[n];let s=`<svg viewBox="0 0 100 120" class="g"><text x="50" y="13" text-anchor="middle" class="gt">${n}</text>`;
+for(let i=0;i<6;i++)s+=`<line x1="${15+i*14}" y1="28" x2="${15+i*14}" y2="108" stroke="var(--mut)"/>`;
+for(let i=0;i<6;i++)s+=`<line x1="15" y1="${28+i*16}" x2="85" y2="${28+i*16}" stroke="var(--mut)" stroke-width="${i?1:3}"/>`;
+f.forEach((v,i)=>{const x=15+i*14;if(v<0)s+=`<text x="${x}" y="25" text-anchor="middle" font-size="10" fill="var(--mut)">×</text>`;else if(v==0)s+=`<circle cx="${x}" cy="22" r="3" fill="none" stroke="var(--fg)"/>`;else s+=`<circle cx="${x}" cy="${28+(v-.5)*16}" r="5.5" fill="var(--ac2)"/>`});
+return s+'</svg>'}
+const NP={C:-2,D:-1,E:0,F:1,G:2,A:3,B:4,C5:5,D5:6};
+function stf(a){const n=a.split(',');const w=n.length*36+50;let s=`<svg viewBox="0 0 ${w} 100" class="d" style="max-width:${Math.min(w*1.6,520)}px">`;
+for(let i=0;i<5;i++)s+=`<line x1="5" y1="${20+i*10}" x2="${w-5}" y2="${20+i*10}" stroke="var(--fg)"/>`;
+s+=`<text x="8" y="62" font-size="46" fill="var(--fg)">𝄞</text>`;
+n.forEach((v,i)=>{const m=v.match(/^([A-G]5?)([#b]?)$/),p=NP[m[1]],x=58+i*36,y=60-p*5,ac=m[2]=='#'?'♯':m[2]=='b'?'♭':'';
+if(p<=-2)s+=`<line x1="${x-11}" y1="70" x2="${x+11}" y2="70" stroke="var(--fg)"/>`;
+s+=`<ellipse cx="${x}" cy="${y}" rx="6.5" ry="5" fill="var(--ac2)"/>`;if(ac)s+=`<text x="${x-18}" y="${y+5}" font-size="15" fill="var(--fg)">${ac}</text>`;
+s+=`<text x="${x}" y="96" text-anchor="middle" style="font:600 10px system-ui" fill="var(--mut)">${m[1].replace('5','')+ac}</text>`});return s+'</svg>'}
+function cf(){const M=['C','G','D','A','E','B','F♯','D♭','A♭','E♭','B♭','F'],m=['Am','Em','Bm','F♯m','C♯m','G♯m','D♯m','B♭m','Fm','Cm','Gm','Dm'];let s='<svg viewBox="0 0 300 300" class="d" style="max-width:380px"><circle cx="150" cy="150" r="142" fill="var(--card)" stroke="var(--bd)"/><circle cx="150" cy="150" r="90" fill="none" stroke="var(--bd)"/>';
+M.forEach((c,i)=>{const a=i*Math.PI/6-Math.PI/2,ca=Math.cos(a),sa=Math.sin(a);s+=`<text x="${150+ca*116}" y="${156+sa*116}" text-anchor="middle" style="font:700 18px system-ui" fill="var(--ac)">${c}</text><text x="${150+ca*66}" y="${155+sa*66}" text-anchor="middle" style="font:600 13px system-ui" fill="var(--ac2)">${m[i]}</text>`});
+return s+'<text x="150" y="146" text-anchor="middle" style="font:700 11px system-ui" fill="var(--mut)">CÍRCULO DE</text><text x="150" y="162" text-anchor="middle" style="font:700 11px system-ui" fill="var(--mut)">QUINTAS</text></svg>'}
+const N={C:0,'C#':1,Db:1,D:2,Eb:3,E:4,F:5,'F#':6,G:7,Ab:8,A:9,Bb:10,B:11};
+function fb(a){const[l,t]=a.split('|'),sc=l.split(',').map(x=>N[x]),tn=N[t],O=[4,9,2,7,11,4];let s='<svg viewBox="0 0 100 114" class="g" style="width:180px;display:block;margin:10px auto">';
+for(let i=0;i<6;i++)s+=`<line x1="${15+i*14}" y1="30" x2="${15+i*14}" y2="94" stroke="var(--mut)"/>`;
+for(let r=0;r<5;r++)s+=`<line x1="15" y1="${30+r*16}" x2="85" y2="${30+r*16}" stroke="var(--mut)" stroke-width="${r?1:3}"/>`;
+O.forEach((o,i)=>{for(let f=0;f<5;f++){const n=(o+f)%12;if(!sc.includes(n))continue;const x=15+i*14,c=n==tn?'var(--ac)':'var(--ac2)';s+=f?`<circle cx="${x}" cy="${30+(f-.5)*16}" r="5.5" fill="${c}"/>`:`<circle cx="${x}" cy="22" r="4" fill="none" stroke="${c}" stroke-width="2"/>`}});
+return s+`<text x="50" y="110" text-anchor="middle" style="font:600 9px system-ui" fill="var(--mut)">laranja = tônica</text></svg>`}
+const fx=h=>h.replace(/\[(kb|gt|gg|st|cf|fb|pt):([^\]]*)\]/g,(_,t,a)=>{if(t=='kb'){const[p,l]=a.split('|');return kb(p,l)}if(t=='st')return stf(a);if(t=='cf')return cf();if(t=='fb')return fb(a);if(t=='pt')return pt(a);return t=='gt'?gt(a):`<div class="gr">${a.split(',').map(gt).join('')}</div>`});
+Object.assign(NP,{E5:7,F5:8,G5:9,A5:10});
+function pt(a){return a.split('//').map((z,si)=>{let x=56,b='';let lab='';
+z.trim().split(/\s+/).forEach(e=>{
+if(/^\d\/\d$/.test(e)){const[n,d]=e.split('/');b+=`<text x="${x-4}" y="40" font-size="22" font-weight="800" fill="var(--fg)" font-family="Arial,sans-serif">${n}</text><text x="${x-4}" y="60" font-size="22" font-weight="800" fill="var(--fg)" font-family="Arial,sans-serif">${d}</text>`;x+=28;return}
+if(e=='|'){b+=`<line x1="${x-6}" y1="20" x2="${x-6}" y2="60" stroke="var(--fg)"/>`;x+=10;return}
+if(e[0]=='~'){lab=e.slice(1);return}
+const k=e.lastIndexOf('.'),d=e.slice(k+1),ms=e.slice(0,k).split('+').map(v=>v.match(/^([A-G]5?)([#b]?)$/)),P=ms.map(m=>NP[m[1]]),Y=P.map(q=>60-q*5);
+ms.forEach((m,j)=>{const y=Y[j],ac=m[2]=='#'?'♯':m[2]=='b'?'♭':'';
+if(P[j]<=-2)b+=`<line x1="${x-11}" y1="70" x2="${x+11}" y2="70" stroke="var(--fg)"/>`;
+if(P[j]>=10)b+=`<line x1="${x-11}" y1="10" x2="${x+11}" y2="10" stroke="var(--fg)"/>`;
+b+=`<ellipse cx="${x}" cy="${y}" rx="${d=='w'?7.5:6.5}" ry="5" fill="${d=='q'?'var(--ac2)':'var(--card)'}" stroke="var(--ac2)" stroke-width="2"/>`;
+if(ac)b+=`<text x="${x-19}" y="${y+5}" font-size="15" fill="var(--fg)">${ac}</text>`});
+if(d!='w'){const lo=Math.max(...Y),hi=Math.min(...Y);b+=Math.min(...P)<4?`<line x1="${x+6.3}" y1="${lo}" x2="${x+6.3}" y2="${hi-28}" stroke="var(--ac2)" stroke-width="2"/>`:`<line x1="${x-6.3}" y1="${hi}" x2="${x-6.3}" y2="${lo+28}" stroke="var(--ac2)" stroke-width="2"/>`}
+if(lab){b+=`<text x="${x}" y="11" text-anchor="middle" font-size="13" font-weight="800" fill="var(--ac)" font-family="Arial,sans-serif">${lab}</text>`;lab=''}
+x+=d=='w'?64:d=='h'?50:36});
+const w=x+8;let L='';for(let i=0;i<5;i++)L+=`<line x1="5" y1="${20+i*10}" x2="${w-5}" y2="${20+i*10}" stroke="var(--fg)"/>`;
+L+=`<text x="8" y="62" font-size="46" fill="var(--fg)">𝄞</text><line x1="${w-12}" y1="20" x2="${w-12}" y2="60" stroke="var(--fg)"/><line x1="${w-7}" y1="20" x2="${w-7}" y2="60" stroke="var(--fg)" stroke-width="3"/>`;
+return `<svg viewBox="0 0 ${w} 96" class="d" style="max-width:${Math.min(w*1.5,580)}px">${L}${b}</svg>`}).join('')}
+
+return fx})();
+</script>
+<script>
+const $=s=>document.querySelector(s),A=$("#app");
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const RT=new URLSearchParams(location.search).get("reset");
+let me=null,modo="register",sel=new Set(),asAluno=false,quiz=null;
+async function api(p,body){const r=await fetch(p,{method:body?"POST":"GET",headers:{"Content-Type":"application/json"},body:body?JSON.stringify(body):undefined});let j={};try{j=await r.json()}catch(e){}if(!r.ok)throw new Error(j.erro||"Erro");return j}
+const brl=v=>"R$ "+v.toFixed(2).replace(".",",");
+const total=()=>(sel.has("trimestral")?24.99:0)+(sel.has("ebook")?19.9:0);
+const semOk=n=>me.sem[n]&&me.sem[n].p/me.sem[n].t>=.5;
+const liberada=n=>n==1||(me.ent.trimestral&&semOk(n-1));
+
+/* ---------- QR Code ---------- */
+/* Gerador de QR Code (byte, correção M, versões 1-10) */
+function wbQR(text){
+  const ECC=[10,16,26,18,24,16,18,22,22,26],NB=[1,1,1,2,2,4,4,4,5,5];
+  const raw=v=>{let r=(16*v+128)*v+64;if(v>=2){const n=Math.floor(v/7)+2;r-=(25*n-10)*n-55;if(v>=7)r-=36}return r};
+  const data=[...new TextEncoder().encode(text)];
+  let ver=1,cap=0;
+  for(;ver<=10;ver++){cap=Math.floor(raw(ver)/8)-ECC[ver-1]*NB[ver-1];if(4+(ver<=9?8:16)+data.length*8<=cap*8)break}
+  if(ver>10)throw new Error("texto longo demais");
+  const bits=[],put=(v,n)=>{for(let i=n-1;i>=0;i--)bits.push((v>>>i)&1)};
+  put(4,4);put(data.length,ver<=9?8:16);data.forEach(b=>put(b,8));
+  put(0,Math.min(4,cap*8-bits.length));put(0,(8-bits.length%8)%8);
+  for(let p=0xEC;bits.length<cap*8;p^=0xEC^0x11)put(p,8);
+  const cw=[];for(let i=0;i<bits.length;i+=8){let b=0;for(let j=0;j<8;j++)b=b<<1|bits[i+j];cw.push(b)}
+  const mul=(x,y)=>{let z=0;for(let i=7;i>=0;i--){z=(z<<1)^((z>>>7)*0x11D);z^=((y>>>i)&1)*x}return z};
+  const nb=NB[ver-1],el=ECC[ver-1],rc=Math.floor(raw(ver)/8),ns=nb-rc%nb,sl=Math.floor(rc/nb);
+  const div=Array(el).fill(0);div[el-1]=1;let root=1;
+  for(let i=0;i<el;i++){for(let j=0;j<el;j++){div[j]=mul(div[j],root);if(j+1<el)div[j]^=div[j+1]}root=mul(root,2)}
+  const blocks=[];let k=0;
+  for(let i=0;i<nb;i++){const d=cw.slice(k,k+sl-el+(i<ns?0:1));k+=d.length;
+    const r=Array(el).fill(0);for(const b of d){const f=b^r.shift();r.push(0);div.forEach((c,x)=>r[x]^=mul(c,f))}
+    if(i<ns)d.push(0);blocks.push(d.concat(r))}
+  const all=[];for(let i=0;i<blocks[0].length;i++)blocks.forEach((b,j)=>{if(i!=sl-el||j>=ns)all.push(b[i])});
+  const size=ver*4+17,M=Array.from({length:size},()=>Array(size).fill(false)),F=Array.from({length:size},()=>Array(size).fill(false));
+  const set=(x,y,c)=>{M[y][x]=c;F[y][x]=true},bit=(v,i)=>((v>>>i)&1)!=0;
+  for(let i=0;i<size;i++){set(6,i,i%2==0);set(i,6,i%2==0)}
+  const finder=(cx,cy)=>{for(let dy=-4;dy<=4;dy++)for(let dx=-4;dx<=4;dx++){const d=Math.max(Math.abs(dx),Math.abs(dy)),x=cx+dx,y=cy+dy;if(x>=0&&x<size&&y>=0&&y<size)set(x,y,d!=2&&d!=4)}};
+  finder(3,3);finder(size-4,3);finder(3,size-4);
+  if(ver>1){const n=Math.floor(ver/7)+2,st=Math.floor((ver*8+n*3+5)/(n*4-4))*2,pos=[6];
+    for(let p=size-7;pos.length<n;p-=st)pos.splice(1,0,p);
+    for(let i=0;i<n;i++)for(let j=0;j<n;j++){if((i==0&&j==0)||(i==0&&j==n-1)||(i==n-1&&j==0))continue;
+      for(let dy=-2;dy<=2;dy++)for(let dx=-2;dx<=2;dx++)set(pos[i]+dx,pos[j]+dy,Math.max(Math.abs(dx),Math.abs(dy))!=1)}}
+  const fmt=m=>{const d=m;let r=d;for(let i=0;i<10;i++)r=(r<<1)^((r>>>9)*0x537);const b=(d<<10|r)^0x5412;
+    for(let i=0;i<=5;i++)set(8,i,bit(b,i));set(8,7,bit(b,6));set(8,8,bit(b,7));set(7,8,bit(b,8));
+    for(let i=9;i<15;i++)set(14-i,8,bit(b,i));
+    for(let i=0;i<8;i++)set(size-1-i,8,bit(b,i));for(let i=8;i<15;i++)set(8,size-15+i,bit(b,i));set(8,size-8,true)};
+  fmt(0);
+  if(ver>=7){let r=ver;for(let i=0;i<12;i++)r=(r<<1)^((r>>>11)*0x1F25);const b=ver<<12|r;
+    for(let i=0;i<18;i++){const a=size-11+i%3,c=Math.floor(i/3);set(a,c,bit(b,i));set(c,a,bit(b,i))}}
+  let i=0;
+  for(let right=size-1;right>=1;right-=2){if(right==6)right=5;
+    for(let v=0;v<size;v++)for(let j=0;j<2;j++){const x=right-j,up=((right+1)&2)==0,y=up?size-1-v:v;
+      if(!F[y][x]&&i<all.length*8){M[y][x]=bit(all[i>>>3],7-(i&7));i++}}}
+  const apply=m=>{for(let y=0;y<size;y++)for(let x=0;x<size;x++){let inv;
+    switch(m){case 0:inv=(x+y)%2==0;break;case 1:inv=y%2==0;break;case 2:inv=x%3==0;break;case 3:inv=(x+y)%3==0;break;
+      case 4:inv=(Math.floor(x/3)+Math.floor(y/2))%2==0;break;case 5:inv=x*y%2+x*y%3==0;break;
+      case 6:inv=(x*y%2+x*y%3)%2==0;break;default:inv=((x+y)%2+x*y%3)%2==0}
+    if(!F[y][x]&&inv)M[y][x]=!M[y][x]}};
+  const penalty=()=>{let p=0;
+    for(let t=0;t<2;t++){const g=(a,b)=>t?M[b][a]:M[a][b];
+      for(let a=0;a<size;a++){let run=1;for(let b=1;b<size;b++){if(g(a,b)==g(a,b-1)){run++;if(run==5)p+=3;else if(run>5)p++}else run=1}
+        const line=[];for(let b=0;b<size;b++)line.push(g(a,b)?1:0);const s=line.join("");
+        for(const pat of["10111010000","00001011101"]){let idx=-1;while((idx=s.indexOf(pat,idx+1))>=0)p+=40}}}
+    for(let y=0;y<size-1;y++)for(let x=0;x<size-1;x++){const c=M[y][x];if(c==M[y][x+1]&&c==M[y+1][x]&&c==M[y+1][x+1])p+=3}
+    let dark=0;for(const r of M)for(const c of r)if(c)dark++;
+    p+=Math.floor(Math.abs(dark*20-size*size*10)/(size*size))*10;return p};
+  let best=0,bp=Infinity;
+  for(let m=0;m<8;m++){apply(m);fmt(m);const s=penalty();if(s<bp){bp=s;best=m}apply(m)}
+  apply(best);fmt(best);
+  return M;
+}
+
+
+/* ---------- página inicial / acesso ---------- */
+function landing(){
+A.innerHTML=`<section class="hero"><div><div class="eyebrow">Teoria musical + violão • 12 semanas</div>
+<h1>Do zero ao <em>acompanhamento</em> em 3 meses.</h1>
+<p class="lead">Aprenda notas, cifras e acordes aplicados ao violão, com exercícios guiados e feedback em cada resposta. Feito para quem nunca estudou música.</p>
+<div class="bonus">✨ <b>BÔNUS EXCLUSIVO:</b> Consultoria a qualquer hora direto com o autor!</div></div>
+<div class="autor"><img src="/autor.jpg" alt="Willames, músico e mentor"><span><b>Willames</b><br>Músico e Mentor</span></div></section>
+<section class="acesso card"><div class="qrbox"><canvas id="qr" width="300" height="300" aria-label="QR Code para acessar o app WBmusic"></canvas><small>Escaneie para acessar</small><button class="tag" id="qrdl" style="margin-top:8px">⬇ Baixar QR Code</button></div>
+<div class="cta"><a class="b wa" href="https://wa.me/5562998598186?text=${encodeURIComponent("Olá! Quero saber mais sobre a consultoria do WBmusic.")}" target="_blank" rel="noopener">💬 Fale agora: (62) 99859-8186</a>
+<a class="b ol" href="#cadastro" onclick="irCadastro(event)">Comece grátis no app <b>WB music.</b></a></div></section>
+<h2 id="planos">Escolha seu acesso</h2><p class="m">Teste de nível e Semana 1 grátis. Plano e e-book são independentes e cobrados separadamente.</p>
+<div class="pl"><div class="card ${sel.has("trimestral")?"sel":""}"><h3>Plano Trimestral</h3><div class="pr">R$ 24,99</div><div class="m">valor total do trimestre · 3 meses (12 semanas)</div><ul><li>12 semanas de estudo</li><li>Teste de nível e testes semanais</li><li>Acompanhamento do tutor</li></ul><button class="b f" onclick="tg('trimestral')">${sel.has("trimestral")?"✓ Selecionado":"Quero o Plano Trimestral"}</button></div>
+<div class="card ${sel.has("ebook")?"sel":""}"><h3>E-book WBmusic</h3><div class="pr">R$ 19,90</div><ul><li>Conteúdo completo das 12 semanas</li><li>Diagramas, partituras e exercícios</li><li>PDF para baixar</li></ul><button class="b f" onclick="tg('ebook')">${sel.has("ebook")?"✓ Selecionado":"Quero o E-book"}</button></div></div>
+<p class="m" style="text-align:center">Os produtos são independentes e cobrados separadamente. Escolha um, os dois (${brl(44.89)}) ou comece só pela Semana 1 grátis.</p>
+<div class="card" id="cadastro"><h3>${modo=="login"?"Entrar":"Criar acesso"}</h3>
+<form id="f">${modo=="register"?'<label>Nome<input id="n" autocomplete="name" required></label>':""}
+<label>E-mail<input id="e" type="email" autocomplete="email" required></label>
+<label>Senha${modo=="register"?" (mínimo 8 caracteres)":""}<input id="s" type="password" autocomplete="${modo=="login"?"current-password":"new-password"}" minlength="8" required></label>
+${modo=="register"?'<label>Repita a senha<input id="s2" type="password" autocomplete="new-password" minlength="8" required></label>':""}
+<button class="b f" id="go">${modo=="login"?(sel.size?"Entrar e pagar "+brl(total()):"Entrar"):(sel.size?"Criar acesso e pagar "+brl(total()):"Criar acesso grátis (Semana 1)")}</button><p class="err" id="er"></p></form>
+${modo=="login"?'<p class="tab"><a href="#" id="fg">Esqueci minha senha</a></p>':""}
+<p class="tab"><a href="#" id="tg">${modo=="login"?"Ainda não tenho acesso":"Já tenho acesso"}</a></p></div>`;
+desenharQR();
+$("#tg").onclick=e=>{e.preventDefault();modo=modo=="login"?"register":"login";landing()};
+if($("#fg"))$("#fg").onclick=e=>{e.preventDefault();esqueci()};
+$("#f").onsubmit=async e=>{e.preventDefault();$("#er").textContent="";
+if(modo=="register"&&$("#s").value!==$("#s2").value){$("#er").textContent="As senhas não conferem.";return}
+$("#go").disabled=true;
+try{await api("/api/auth?a="+modo,{nome:$("#n")&&$("#n").value,email:$("#e").value,senha:$("#s").value});
+if(sel.size){await pagar([...sel]);return}
+await init()}catch(x){$("#er").textContent=x.message;$("#go").disabled=false}}}
+
+function desenharQR(){const c=$("#qr");if(!c)return;let M;try{M=wbQR(location.origin+"/qr")}catch(e){return}
+const n=M.length,z=4,px=Math.floor(300/(n+2*z)),w=px*(n+2*z),g=c.getContext("2d");c.width=c.height=w;g.fillStyle="#fff";g.fillRect(0,0,w,w);g.fillStyle="#0b0e14";
+for(let y=0;y<n;y++)for(let x=0;x<n;x++)if(M[y][x])g.fillRect((x+z)*px,(y+z)*px,px,px);
+$("#qrdl").onclick=()=>{const big=document.createElement("canvas"),k=Math.ceil(1000/w);big.width=big.height=w*k;const h=big.getContext("2d");h.imageSmoothingEnabled=false;h.drawImage(c,0,0,w*k,w*k);
+big.toBlob(b=>{const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="QRCode-WBmusic.png";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000)})}}
+function irCadastro(e){e.preventDefault();sel.clear();modo="register";landing();document.getElementById("cadastro").scrollIntoView({behavior:"smooth"})}
+function tg(k){sel.has(k)?sel.delete(k):sel.add(k);landing()}
+function esqueci(){A.innerHTML=`<div class="card"><h1>Recuperar senha</h1><p class="m">Informe seu e-mail e enviaremos um link para criar uma nova senha.</p><form id="ff"><label>E-mail<input id="fe" type="email" required></label><button class="b f" id="fb">Enviar link</button><p class="err" id="fr"></p></form><p class="tab"><a href="#" id="vl">Voltar</a></p></div>`;
+$("#vl").onclick=e=>{e.preventDefault();modo="login";landing()};
+$("#ff").onsubmit=async e=>{e.preventDefault();$("#fb").disabled=true;try{const j=await api("/api/auth?a=forgot",{email:$("#fe").value});$("#fr").className="okm";$("#fr").textContent=j.msg}catch(x){$("#fr").textContent=x.message;$("#fb").disabled=false}}}
+function novaSenha(){A.innerHTML=`<div class="card"><h1>Criar nova senha</h1><form id="nf"><label>Nova senha (mínimo 8 caracteres)<input id="p1" type="password" autocomplete="new-password" minlength="8" required></label><label>Repita a senha<input id="p2" type="password" autocomplete="new-password" minlength="8" required></label><button class="b f" id="nb">Salvar nova senha</button><p class="err" id="nr"></p></form></div>`;
+$("#nf").onsubmit=async e=>{e.preventDefault();if($("#p1").value!==$("#p2").value){$("#nr").textContent="As senhas não conferem.";return}$("#nb").disabled=true;try{await api("/api/auth?a=reset",{token:RT,senha:$("#p1").value});history.replaceState(null,"","/");window.__rd=1;init()}catch(x){$("#nr").textContent=x.message;$("#nb").disabled=false}}}
+async function pagar(prods){try{const j=await api("/api/checkout",{produtos:prods});location.href=j.url}catch(x){alert(x.message);init()}}
+async function sair(){await api("/api/auth?a=logout",{});location.href="/"}
+
+/* ---------- área do aluno ---------- */
+function dash(){
+const d=Object.keys(me.sem).filter(semOk).length,e=me.ent,falta=[!e.trimestral&&"trimestral",!e.ebook&&"ebook"].filter(Boolean);
+const st=[e.trimestral?"Plano Trimestral ativo":"",e.ebook?"E-book liberado":""].filter(Boolean).join(" + ")||"Semana 1 grátis";
+A.innerHTML=`${me.tutor?'<p><button class="tag" onclick="asAluno=false;render()">← Voltar ao painel do tutor</button></p>':""}<h2>Olá, ${esc(me.nome)}!</h2>
+<div class="card"><div class="wk"><b>${st}</b><span class="bd">${d}/12 semanas concluídas</span></div><div class="bar"><i style="width:${d/12*100}%"></i></div>
+${e.trimestral&&e.ate?`<p class="m">Plano válido até ${new Date(e.ate).toLocaleDateString("pt-BR")}.</p>`:""}
+${me.nota?`<p><b>Recado do tutor:</b> ${esc(me.nota)}</p>`:""}
+${e.ebook?`<p><a class="b" href="/api/download">⬇ Baixar E-book em PDF</a></p>`:""}</div>
+<div class="card"><div class="wk"><div><h3>Teste de nível</h3><span class="m">${me.nivel?`Seu nível: <b>${esc(me.nivel.c)}</b> (${me.nivel.p}/${me.nivel.t})`:"Descubra seu ponto de partida (grátis)"}</span></div><button class="b" onclick="abrir('nivel')">${me.nivel?"Refazer":"Fazer teste"}</button></div></div>
+${me.titulos.map((t,i)=>{const n=i+1,s=me.sem[n],ok=liberada(n);return `<div class="card"><div class="wk"><div><b>S${n} · ${esc(t)}</b> ${n==1?'<span class="bd ok">GRÁTIS</span>':""}<br><span class="m">${s?`Última nota: ${s.p}/${s.t}`:ok?"Disponível":(e.trimestral?`Conclua a S${n-1} (acertando ao menos 50%) para liberar`:"Bloqueada até a liberação do plano")}</span></div><button class="b ${ok?"":"s"}" ${ok?"":"disabled"} onclick="estudar(${n})">${s?"Revisar e refazer":"Estudar e testar"}</button></div></div>`}).join("")}
+${falta.length?`<div class="card"><h3>Adquirir produtos</h3><p class="m">Os produtos são independentes e cobrados separadamente.</p>
+${falta.includes("trimestral")?'<label><input type="checkbox" class="pk" value="trimestral" style="width:auto;margin-right:8px">Plano Trimestral – R$ 24,99 (3 meses, libera as Semanas 2 a 12)</label>':""}
+${falta.includes("ebook")?'<label><input type="checkbox" class="pk" value="ebook" style="width:auto;margin-right:8px">E-book WBmusic – R$ 19,90</label>':""}
+<button class="b" onclick="comprar()">Ir para o pagamento</button></div>`:""}`}
+function comprar(){const p=[...document.querySelectorAll(".pk:checked")].map(x=>x.value);if(!p.length){alert("Marque o que deseja adquirir.");return}pagar(p)}
+
+/* ---------- testes ---------- */
+async function estudar(n){let m;try{m=await api("/api/material?id="+n)}catch(x){if(/dispon/.test(x.message))return abrir(n);alert(x.message);return init()}
+const F=window.wbFx||(h=>h);
+A.innerHTML=`<p><button class="b s" onclick="init()">← Voltar</button></p><h2>${esc(m.titulo)}</h2><p class="m">Objetivo: ${esc(m.objetivo)}</p><div class="mat">${F(m.html)}
+${m.p?`<h2>🎹🎸 Aplicação prática</h2><div class="card"><h3>🎹 No teclado</h3><p>${m.p[0]}</p></div><div class="card"><h3>🎸 No violão</h3><p>${F(m.p[1].replace(/\n/g,"</p><p>"))}</p></div>`:""}
+${m.m?`<h2>🎼 Partitura de prática</h2><div class="card">${F(m.m)}</div>`:""}</div>
+<div class="card"><h3>Exercícios de fixação</h3><p class="m">Tente responder de cabeça e depois confira a resposta.</p>${m.ex.map((e,k)=>`<details><summary><b>${k+1}. ${esc(e.q)}</b></summary><p class="m">${esc(e.r)}</p></details>`).join("")}</div>
+<p><button class="b f" style="font-size:17px" onclick="abrir(${n})">FAZER O TESTE DA SEMANA</button></p>`;scrollTo(0,0)}
+async function abrir(id){try{quiz=Object.assign({id},await api("/api/quiz?id="+id));quiz.res=null;viewQuiz()}catch(x){alert(x.message);init()}}
+function viewQuiz(){const r=quiz.res;
+A.innerHTML=`${r?"":'<p><button class="b s" onclick="init()">← Voltar</button></p>'}<h2>${esc(quiz.titulo)}</h2>
+${quiz.qs.map((q,i)=>`<div class="q"><b>${i+1}. ${esc(q.q)}</b>${q.o.map((o,j)=>`<label class="${r?(j==r.gabarito[i]?"c":r.resp[i]==j?"e":""):""}"><input type="radio" name="q${i}" value="${j}" ${r?"disabled":""} ${r&&r.resp[i]==j?"checked":""}>${esc(o)}</label>`).join("")}</div>`).join("")}
+${r?`<div class="card"><b>Resultado: ${r.p}/${r.t}</b>${r.nivel?` · Nível: ${esc(r.nivel)}`:""}</div>${!r.ok&&quiz.id!="nivel"?'<p class="m">Acerte ao menos 50% para liberar a próxima semana. Você pode refazer o teste depois.</p>':""}<p><button class="b f" style="font-size:17px;letter-spacing:.06em" onclick="continuar()">CONTINUAR</button></p>`:'<button class="b" onclick="enviar()">Enviar respostas</button><p class="err" id="er"></p>'}`;window.scrollTo(0,0)}
+async function enviar(){const resp=quiz.qs.map((q,i)=>{const x=document.querySelector(`input[name=q${i}]:checked`);return x?+x.value:-1});
+if(resp.includes(-1)){$("#er").textContent="Responda todas as perguntas.";return}
+try{const r=await api("/api/quiz",{id:quiz.id,respostas:resp});quiz.res=Object.assign(r,{resp});me=await api("/api/me");viewQuiz()}catch(x){$("#er").textContent=x.message}}
+async function continuar(){const id=quiz.id,ok=quiz.res.ok;
+if(id=="nivel")return abrir(1);
+const n=Number(id);if(ok&&n<12&&me.ent.trimestral)return abrir(n+1);init()}
+
+/* ---------- painel do tutor ---------- */
+async function tutor(){let d;try{d=await api("/api/tutor")}catch(x){A.innerHTML='<p class="err">'+esc(x.message)+"</p>";return}
+const L=d.alunos;
+A.innerHTML=`<div class="wk"><h2>Painel do tutor</h2><button class="tag" onclick="asAluno=true;render()">Testar como aluno</button></div>
+<div class="g"><div class="card"><b>${L.length}</b><br>alunos</div><div class="card"><b>${L.filter(a=>a.trimestral).length}</b><br>no plano trimestral</div><div class="card"><b>${L.filter(a=>a.ebook).length}</b><br>com e-book</div></div>
+${L.length?"":'<p class="m">Nenhum aluno cadastrado ainda. Compartilhe o endereço do site.</p>'}
+${L.map(a=>{const pl=a.trimestral&&a.ebook?"ambos":a.trimestral?"trimestral":a.ebook?"ebook":"nenhum",c=Object.keys(a.sem).filter(n=>a.sem[n].p/a.sem[n].t>=.5).length;
+return `<div class="card"><div class="wk"><div><h3>${esc(a.nome)}</h3><span class="m">${esc(a.email)}</span></div><span class="bd">${c}/12 concluídas</span></div>
+<p>Nível: <b>${a.nivel?esc(a.nivel.c)+" ("+a.nivel.p+"/"+a.nivel.t+")":"ainda não fez o teste"}</b>${a.trimestral&&a.ate?` · plano até ${new Date(a.ate).toLocaleDateString("pt-BR")}`:""}</p>
+<div class="ch">${d.titulos.map((t,k)=>`<span title="${esc(t)}">S${k+1}: ${a.sem[k+1]?a.sem[k+1].p+"/"+a.sem[k+1].t:"–"}</span>`).join("")}</div>
+<label>Acesso<select data-e="${esc(a.email)}" onchange="salvar(this,'plano')">${[["nenhum","Somente Semana 1 (grátis)"],["trimestral","Plano Trimestral"],["ebook","E-book WBmusic"],["ambos","Plano Trimestral + E-book"]].map(o=>`<option value="${o[0]}" ${o[0]==pl?"selected":""}>${o[1]}</option>`).join("")}</select></label>
+<label>Recado para o aluno<textarea rows="2" data-e="${esc(a.email)}" onchange="salvar(this,'nota')">${esc(a.nota)}</textarea></label></div>`}).join("")}`}
+async function salvar(el,campo){try{await api("/api/tutor",{email:el.dataset.e,[campo]:el.value});el.style.borderColor="var(--gr)"}catch(x){alert(x.message)}}
+
+/* ---------- controle ---------- */
+function render(){$("#who").innerHTML=`${esc(me.email)} · <a href="#" id="out">Sair</a>`;$("#out").onclick=e=>{e.preventDefault();sair()};
+if(me.tutor&&!asAluno)tutor();else dash()}
+async function init(){
+if(RT&&!window.__rd){window.__rd=1;return novaSenha()}
+try{me=await api("/api/me")}catch(e){A.innerHTML='<p class="err">Não foi possível carregar. Tente novamente.</p>';return}
+const q=new URLSearchParams(location.search).get("pago");
+if(q=="ok"&&me.logado){const antes=JSON.stringify(me.ent);A.innerHTML='<div class="card"><h1>Confirmando seu pagamento…</h1><p class="m">Leva alguns segundos. Pix pode demorar um pouco mais; você pode fechar esta página e voltar depois.</p></div>';
+for(let i=0;i<20&&JSON.stringify(me.ent)==antes;i++){await new Promise(r=>setTimeout(r,3000));me=await api("/api/me")}history.replaceState(null,"","/")}
+if(!me.logado){$("#who").textContent="";return landing()}
+render()}
+init();
+</script>
+</body>
+</html>

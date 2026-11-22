@@ -1,0 +1,7 @@
+Options -Indexes
+RewriteEngine On
+# /api/auth -> api/auth.php (mantém ?a=...)
+# QR Code do flyer: /qr redireciona (302) para o destino definido em api/config.php
+RewriteRule ^qr/?$ qr.php [L]
+RewriteRule ^api/([a-z]+)$ api/$1.php [QSA,L]
+Header always set X-Content-Type-Options "nosniff"
